@@ -1,13 +1,13 @@
 import { User } from '@prisma/client';
 import bcrypt from 'bcrypt';
-import config from '../../../config';
-import prisma from '../../../shared/prisma';
-import { ILoginUser, ILoginUserResponse } from './auth.interface';
-import ApiError from '../../../errors/ApiError';
 import httpStatus from 'http-status';
-import { isPasswordMatch } from '../../../shared/utils';
-import { jwtHelpers } from '../../../helpers/jwtHelpers';
 import { Secret } from 'jsonwebtoken';
+import config from '../../../config';
+import ApiError from '../../../errors/ApiError';
+import { jwtHelpers } from '../../../helpers/jwtHelpers';
+import prisma from '../../../shared/prisma';
+import { excludePassword, isPasswordMatch } from '../../../shared/utils';
+import { ILoginUser, ILoginUserResponse } from './auth.interface';
 
 const signup = async (data: User): Promise<Partial<User>> => {
   data.password = await bcrypt.hash(
@@ -17,16 +17,9 @@ const signup = async (data: User): Promise<Partial<User>> => {
 
   const result = await prisma.user.create({
     data,
-    select: {
-      name: true,
-      email: true,
-      role: true,
-      contactNo: true,
-      address: true,
-      profileImg: true,
-    },
   });
-  return result;
+  const newResult = excludePassword(result, ['password']);
+  return newResult;
 };
 
 const login = async (data: ILoginUser): Promise<ILoginUserResponse> => {

@@ -14,7 +14,9 @@ const signupZodSchema = z.object({
     password: z.string({
       required_error: 'Password is required',
     }),
-    role: z.enum([...Object.values(UserRole)] as [string, ...string[]]),
+    role: z.enum([...Object.values(UserRole)] as [string, ...string[]], {
+      required_error: 'User Role is required',
+    }),
     contactNo: z.string({
       required_error: 'Contact number is required',
     }),
