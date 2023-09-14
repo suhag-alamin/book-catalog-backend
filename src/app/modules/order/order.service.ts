@@ -1,3 +1,4 @@
+import { Order, UserRole } from '@prisma/client';
 import httpStatus from 'http-status';
 import { JwtPayload } from 'jsonwebtoken';
 import ApiError from '../../../errors/ApiError';
@@ -66,8 +67,51 @@ const createOrder = async (data: ICreateOrder, user: JwtPayload | null) => {
   throw new ApiError(httpStatus.BAD_REQUEST, 'Unable to create order');
 };
 
-const getAllOrders = async () => {
+const getAllOrders = async (user: JwtPayload | null): Promise<Order[]> => {
+  console.log(user);
+
+  if (user?.role === UserRole.CUSTOMER) {
+    const result = await prisma.order.findMany({
+      where: {
+        userId: user?.userId,
+      },
+      include: {
+        orderedBooks: true,
+      },
+    });
+    return result;
+  }
+
   const result = await prisma.order.findMany({
+    include: {
+      orderedBooks: true,
+    },
+  });
+  return result;
+};
+const getSingleOrder = async (
+  orderId: string,
+  user: JwtPayload | null
+): Promise<Order | null> => {
+  console.log(user);
+
+  if (user?.role === UserRole.CUSTOMER) {
+    const result = await prisma.order.findUnique({
+      where: {
+        id: orderId,
+        userId: user?.userId,
+      },
+      include: {
+        orderedBooks: true,
+      },
+    });
+    return result;
+  }
+
+  const result = await prisma.order.findUnique({
+    where: {
+      id: orderId,
+    },
     include: {
       orderedBooks: true,
     },
@@ -78,4 +122,5 @@ const getAllOrders = async () => {
 export const OrderService = {
   createOrder,
   getAllOrders,
+  getSingleOrder,
 };
