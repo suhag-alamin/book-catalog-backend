@@ -20,5 +20,10 @@ router.get(
   BookController.getBooksByCategoryIdController
 );
 router.get('/:id', BookController.getSingleBookController);
+router.patch(
+  '/:id',
+  validateRequest(BookValidation.updateBookZodSchema),
+  BookController.updateBookController
+);
 
 export const BookRoutes = router;
