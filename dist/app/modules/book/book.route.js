@@ -1,0 +1,20 @@
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.BookRoutes = void 0;
+const express_1 = __importDefault(require("express"));
+const validateRequest_1 = __importDefault(require("../../middlewares/validateRequest"));
+const auth_1 = __importDefault(require("../../middlewares/auth"));
+const client_1 = require("@prisma/client");
+const book_controller_1 = require("./book.controller");
+const book_validation_1 = require("./book.validation");
+const router = express_1.default.Router();
+router.post('/create-book', (0, validateRequest_1.default)(book_validation_1.BookValidation.createBookZodSchema), (0, auth_1.default)(client_1.UserRole.ADMIN), book_controller_1.BookController.createBookController);
+router.get('/', book_controller_1.BookController.getAllBooksController);
+router.get('/:categoryId/category', book_controller_1.BookController.getBooksByCategoryIdController);
+router.get('/:id', book_controller_1.BookController.getSingleBookController);
+router.patch('/:id', (0, validateRequest_1.default)(book_validation_1.BookValidation.updateBookZodSchema), (0, auth_1.default)(client_1.UserRole.ADMIN), book_controller_1.BookController.updateBookController);
+router.delete('/:id', (0, auth_1.default)(client_1.UserRole.ADMIN), book_controller_1.BookController.deleteBookController);
+exports.BookRoutes = router;

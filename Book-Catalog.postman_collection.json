@@ -1,0 +1,780 @@
+{
+	"info": {
+		"_postman_id": "aff87b50-84a8-46ab-a337-26b2626b44c3",
+		"name": "Book-Catalog",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "22433617"
+	},
+	"item": [
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "Get All Users",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{admin_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{ROOT}}/users",
+							"host": [
+								"{{ROOT}}"
+							],
+							"path": [
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Single User",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{admin_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{ROOT}}/users/3fae8a37-569f-475c-af68-b3504adeeb7d",
+							"host": [
+								"{{ROOT}}"
+							],
+							"path": [
+								"users",
+								"3fae8a37-569f-475c-af68-b3504adeeb7d"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update User",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{admin_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Jane\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{ROOT}}/users/3fae8a37-569f-475c-af68-b3504adeeb7d",
+							"host": [
+								"{{ROOT}}"
+							],
+							"path": [
+								"users",
+								"3fae8a37-569f-475c-af68-b3504adeeb7d"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete User",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{admin_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{ROOT}}/users/510ef2a1-977b-4d11-916e-ab0fd74d5b77",
+							"host": [
+								"{{ROOT}}"
+							],
+							"path": [
+								"users",
+								"510ef2a1-977b-4d11-916e-ab0fd74d5b77"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Signup",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Suhag Al Amin\",\r\n    \"email\": \"suhag@example.com\",\r\n    \"password\": \"123456\",\r\n    \"role\": \"ADMIN\",\r\n    \"contactNo\": \"1234567890\",\r\n    \"address\": \"Dhaka, Bangladesh\",\r\n    \"profileImg\": \"user.jpg\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{ROOT}}/auth/signup",
+							"host": [
+								"{{ROOT}}"
+							],
+							"path": [
+								"auth",
+								"signup"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"suhag@example.com\",\r\n    \"password\": \"123456\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{ROOT}}/auth/login",
+							"host": [
+								"{{ROOT}}"
+							],
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Category",
+			"item": [
+				{
+					"name": "Create Category",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{admin_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"title\": \"Programming\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{ROOT}}/categories/create-category",
+							"host": [
+								"{{ROOT}}"
+							],
+							"path": [
+								"categories",
+								"create-category"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Categories",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{admin_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{ROOT}}/categories",
+							"host": [
+								"{{ROOT}}"
+							],
+							"path": [
+								"categories"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Single Category",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{admin_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{ROOT}}/categories/1c1c18b5-0dcb-463e-8a18-92ee0bc219c5",
+							"host": [
+								"{{ROOT}}"
+							],
+							"path": [
+								"categories",
+								"1c1c18b5-0dcb-463e-8a18-92ee0bc219c5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Category",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{admin_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"Sex\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{ROOT}}/categories/1c1c18b5-0dcb-463e-8a18-92ee0bc219c5",
+							"host": [
+								"{{ROOT}}"
+							],
+							"path": [
+								"categories",
+								"1c1c18b5-0dcb-463e-8a18-92ee0bc219c5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Category",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{admin_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{ROOT}}/categories/1c1c18b5-0dcb-463e-8a18-92ee0bc219c5",
+							"host": [
+								"{{ROOT}}"
+							],
+							"path": [
+								"categories",
+								"1c1c18b5-0dcb-463e-8a18-92ee0bc219c5"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Book",
+			"item": [
+				{
+					"name": "Create Book",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{admin_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"The Hobbit\",\r\n    \"author\": \"John Ronald Reuel\",\r\n    \"genre\": \"Action\",\r\n    \"price\": 1000.00,\r\n    \"publicationDate\": \"1937-07-16\",\r\n    \"categoryId\": \"22fab336-3ffd-4427-8853-f4f5f1108a16\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{ROOT}}/books/create-book",
+							"host": [
+								"{{ROOT}}"
+							],
+							"path": [
+								"books",
+								"create-book"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All books",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{admin_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{ROOT}}/books",
+							"host": [
+								"{{ROOT}}"
+							],
+							"path": [
+								"books"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1",
+									"disabled": true
+								},
+								{
+									"key": "limit",
+									"value": "2",
+									"disabled": true
+								},
+								{
+									"key": "sortBy",
+									"value": "price",
+									"disabled": true
+								},
+								{
+									"key": "sortOrder",
+									"value": "desc",
+									"disabled": true
+								},
+								{
+									"key": "searchTerm",
+									"value": "tech",
+									"disabled": true
+								},
+								{
+									"key": "minPrice",
+									"value": "250.5",
+									"disabled": true
+								},
+								{
+									"key": "maxPrice",
+									"value": "400",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All books by category id",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{admin_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{ROOT}}/books/b842f587-a543-4fe2-a967-45cf7d74c174/category",
+							"host": [
+								"{{ROOT}}"
+							],
+							"path": [
+								"books",
+								"b842f587-a543-4fe2-a967-45cf7d74c174",
+								"category"
+							],
+							"query": [
+								{
+									"key": "sortBy",
+									"value": "price",
+									"disabled": true
+								},
+								{
+									"key": "sortOrder",
+									"value": "desc",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Single Book",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{admin_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{ROOT}}/books/02538497-e5ac-45f7-9533-465e41e31b52",
+							"host": [
+								"{{ROOT}}"
+							],
+							"path": [
+								"books",
+								"02538497-e5ac-45f7-9533-465e41e31b52"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update book",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{admin_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"price\": 1200.11\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{ROOT}}/books/02538497-e5ac-45f7-9533-465e41e31b52",
+							"host": [
+								"{{ROOT}}"
+							],
+							"path": [
+								"books",
+								"02538497-e5ac-45f7-9533-465e41e31b52"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Book",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{admin_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{ROOT}}/books/10997868-e61b-4c99-81c1-72e4091edcf3",
+							"host": [
+								"{{ROOT}}"
+							],
+							"path": [
+								"books",
+								"10997868-e61b-4c99-81c1-72e4091edcf3"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Order",
+			"item": [
+				{
+					"name": "Create Order",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{customer_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"orderedBooks\": [\r\n        {\r\n            \"bookId\": \"d2d52cf2-13c2-4e49-b529-d8edf4f7404d\",\r\n            \"quantity\": 2\r\n        },\r\n        {\r\n            \"bookId\": \"b6b239cf-e010-4fac-b8ca-bd31f1f2e806\",\r\n            \"quantity\": 3\r\n        }\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{ROOT}}/orders/create-order",
+							"host": [
+								"{{ROOT}}"
+							],
+							"path": [
+								"orders",
+								"create-order"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Orders",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{customer_token}}",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{admin_token}}",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{ROOT}}/orders",
+							"host": [
+								"{{ROOT}}"
+							],
+							"path": [
+								"orders"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Single Order",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{customer_token}}",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "Authorization",
+								"value": "{{admin_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{ROOT}}/orders/2b1c8992-ef44-44b9-9c32-12a09fe7c870",
+							"host": [
+								"{{ROOT}}"
+							],
+							"path": [
+								"orders",
+								"2b1c8992-ef44-44b9-9c32-12a09fe7c870"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Profile",
+			"item": [
+				{
+					"name": "Get Profile",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{customer_token}}",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "Authorization",
+								"value": "{{admin_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{ROOT}}/profile",
+							"host": [
+								"{{ROOT}}"
+							],
+							"path": [
+								"profile"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "admin_token",
+			"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1OGQwY2FkNC0yZDdiLTRmNmMtODkwNi04ZTUzNmNhODA0YjkiLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE2OTQ2ODk5MjQsImV4cCI6MTcyNjIyNTkyNH0.V2tqCCAENMAfY5L_wpc7LR_hnt8V4XSDy8U8fywdiXU",
+			"type": "string"
+		},
+		{
+			"key": "customer_token",
+			"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJiN2YzOGJmZi1iNDc0LTRiMmQtODhiNy03N2UwNTUzMDFjYTMiLCJyb2xlIjoiQ1VTVE9NRVIiLCJpYXQiOjE2OTQ3MTU1MzIsImV4cCI6MTcyNjI1MTUzMn0.DEDI6FWqSnwWnMRPEguCIA4QAU_E5ghDQ4YzdQ5A93Q",
+			"type": "string"
+		}
+	]
+}
