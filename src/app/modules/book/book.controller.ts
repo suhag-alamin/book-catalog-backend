@@ -29,7 +29,7 @@ const getAllBooksController = catchAsync(
     sendResponse<Book[]>(res, {
       statusCode: httpStatus.OK,
       success: true,
-      message: 'Book retrieved successfully!',
+      message: 'Books retrieved successfully!',
       meta: result.meta,
       data: result.data,
     });
@@ -48,9 +48,21 @@ const getBooksByCategoryIdController = catchAsync(
     sendResponse<Book[]>(res, {
       statusCode: httpStatus.OK,
       success: true,
-      message: 'Book retrieved successfully!',
+      message: 'Books retrieved successfully!',
       meta: result.meta,
       data: result.data,
+    });
+  }
+);
+const getSingleBookController = catchAsync(
+  async (req: Request, res: Response) => {
+    const result = await BookService.getSingleBook(req.params.id);
+
+    sendResponse<Book>(res, {
+      statusCode: httpStatus.OK,
+      success: true,
+      message: 'Book retrieved successfully!',
+      data: result,
     });
   }
 );
@@ -59,4 +71,5 @@ export const BookController = {
   createBookController,
   getAllBooksController,
   getBooksByCategoryIdController,
+  getSingleBookController,
 };
