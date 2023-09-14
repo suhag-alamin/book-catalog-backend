@@ -39,9 +39,19 @@ const updateUser = async (id: string, data: Partial<User>) => {
   const newResult = excludePassword(result, ['password']);
   return newResult;
 };
+const deleteUser = async (id: string) => {
+  const result = await prisma.user.delete({
+    where: {
+      id,
+    },
+  });
+  const newResult = excludePassword(result, ['password']);
+  return newResult;
+};
 
 export const UserService = {
   getAllUsers,
   getSingleUser,
   updateUser,
+  deleteUser,
 };
