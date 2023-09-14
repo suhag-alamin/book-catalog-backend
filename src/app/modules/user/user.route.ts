@@ -1,12 +1,10 @@
-import express, { Request, Response } from 'express';
+import { UserRole } from '@prisma/client';
+import express from 'express';
+import auth from '../../middlewares/auth';
+import { UserController } from './user.controller';
 
 const router = express.Router();
 
-router.get('/', (req: Request, res: Response) => {
-  console.log(req);
-  res.json({
-    message: 'Hello World',
-  });
-});
+router.get('/', auth(UserRole.ADMIN), UserController.getAllUsersController);
 
 export const UserRoutes = router;
