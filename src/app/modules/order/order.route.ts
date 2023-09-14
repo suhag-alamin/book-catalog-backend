@@ -11,4 +11,6 @@ router.post(
   OrderController.createOrderController
 );
 
+router.get('/', auth(UserRole.ADMIN), OrderController.getAllOrdersController);
+
 export const OrderRoutes = router;

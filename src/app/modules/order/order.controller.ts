@@ -3,6 +3,7 @@ import { Request, Response } from 'express';
 import { OrderService } from './order.service';
 import sendResponse from '../../../shared/sendResponse';
 import httpStatus from 'http-status';
+import { Order } from '@prisma/client';
 
 const createOrderController = catchAsync(
   async (req: Request, res: Response) => {
@@ -18,6 +19,20 @@ const createOrderController = catchAsync(
   }
 );
 
+const getAllOrdersController = catchAsync(
+  async (req: Request, res: Response) => {
+    const result = await OrderService.getAllOrders();
+
+    sendResponse<Order[]>(res, {
+      statusCode: httpStatus.OK,
+      success: true,
+      message: 'Order retrieved successfully',
+      data: result,
+    });
+  }
+);
+
 export const OrderController = {
   createOrderController,
+  getAllOrdersController,
 };

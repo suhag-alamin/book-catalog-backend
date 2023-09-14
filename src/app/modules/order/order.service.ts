@@ -51,7 +51,12 @@ const createOrder = async (data: ICreateOrder, user: JwtPayload | null) => {
         id: newOrder?.id,
       },
       include: {
-        orderedBooks: true,
+        orderedBooks: {
+          select: {
+            bookId: true,
+            quantity: true,
+          },
+        },
       },
     });
 
@@ -61,6 +66,16 @@ const createOrder = async (data: ICreateOrder, user: JwtPayload | null) => {
   throw new ApiError(httpStatus.BAD_REQUEST, 'Unable to create order');
 };
 
+const getAllOrders = async () => {
+  const result = await prisma.order.findMany({
+    include: {
+      orderedBooks: true,
+    },
+  });
+  return result;
+};
+
 export const OrderService = {
   createOrder,
+  getAllOrders,
 };
