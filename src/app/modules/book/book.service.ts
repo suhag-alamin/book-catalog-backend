@@ -118,6 +118,9 @@ const getAllBooks = async (
         : {
             createdAt: 'desc',
           },
+    include: {
+      category: true,
+    },
   });
 
   const total = await prisma.book.count();
@@ -155,6 +158,9 @@ const getBooksByCategoryId = async (
         : {
             createdAt: 'desc',
           },
+    include: {
+      category: true,
+    },
   });
 
   const total = await prisma.book.count();
@@ -174,6 +180,9 @@ const getSingleBook = async (id: string): Promise<Book | null> => {
     where: {
       id,
     },
+    include: {
+      category: true,
+    },
   });
   return result;
 };
@@ -186,6 +195,17 @@ const updateBook = async (
       id,
     },
     data,
+    include: {
+      category: true,
+    },
+  });
+  return result;
+};
+const deleteBook = async (id: string): Promise<Book | null> => {
+  const result = await prisma.book.delete({
+    where: {
+      id,
+    },
   });
   return result;
 };
@@ -196,4 +216,5 @@ export const BookService = {
   getBooksByCategoryId,
   getSingleBook,
   updateBook,
+  deleteBook,
 };

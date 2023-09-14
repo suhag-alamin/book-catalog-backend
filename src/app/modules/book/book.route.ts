@@ -23,7 +23,13 @@ router.get('/:id', BookController.getSingleBookController);
 router.patch(
   '/:id',
   validateRequest(BookValidation.updateBookZodSchema),
+  auth(UserRole.ADMIN),
   BookController.updateBookController
+);
+router.delete(
+  '/:id',
+  auth(UserRole.ADMIN),
+  BookController.deleteBookController
 );
 
 export const BookRoutes = router;
