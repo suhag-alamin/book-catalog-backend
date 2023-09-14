@@ -18,6 +18,7 @@ const createBookController = catchAsync(async (req: Request, res: Response) => {
     data: result,
   });
 });
+
 const getAllBooksController = catchAsync(
   async (req: Request, res: Response) => {
     const filters = pick(req.query, bookFilterableFields);
@@ -35,7 +36,27 @@ const getAllBooksController = catchAsync(
   }
 );
 
+const getBooksByCategoryIdController = catchAsync(
+  async (req: Request, res: Response) => {
+    const paginationOptions = pick(req.query, paginationFields);
+
+    const result = await BookService.getBooksByCategoryId(
+      req.params.categoryId,
+      paginationOptions
+    );
+
+    sendResponse<Book[]>(res, {
+      statusCode: httpStatus.OK,
+      success: true,
+      message: 'Book retrieved successfully!',
+      meta: result.meta,
+      data: result.data,
+    });
+  }
+);
+
 export const BookController = {
   createBookController,
   getAllBooksController,
+  getBooksByCategoryIdController,
 };
