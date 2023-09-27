@@ -17,7 +17,7 @@ const client_1 = require("@prisma/client");
 const prisma_1 = __importDefault(require("../../../shared/prisma"));
 const getProfile = (user) => __awaiter(void 0, void 0, void 0, function* () {
     console.log(user);
-    if ((user === null || user === void 0 ? void 0 : user.role) === client_1.UserRole.CUSTOMER) {
+    if ((user === null || user === void 0 ? void 0 : user.role) === client_1.UserRole.customer) {
         const result = yield prisma_1.default.user.findUnique({
             where: {
                 id: user === null || user === void 0 ? void 0 : user.userId,

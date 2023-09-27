@@ -9,5 +9,5 @@ const auth_1 = __importDefault(require("../../middlewares/auth"));
 const client_1 = require("@prisma/client");
 const profile_controller_1 = require("./profile.controller");
 const router = express_1.default.Router();
-router.get('/', (0, auth_1.default)(client_1.UserRole.ADMIN, client_1.UserRole.CUSTOMER), profile_controller_1.ProfileController.getProfileController);
+router.get('/', (0, auth_1.default)(client_1.UserRole.admin, client_1.UserRole.customer), profile_controller_1.ProfileController.getProfileController);
 exports.ProfileRoutes = router;

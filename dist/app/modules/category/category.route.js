@@ -11,9 +11,9 @@ const validateRequest_1 = __importDefault(require("../../middlewares/validateReq
 const category_controller_1 = require("./category.controller");
 const category_validation_1 = require("./category.validation");
 const router = express_1.default.Router();
-router.post('/create-category', (0, validateRequest_1.default)(category_validation_1.CategoryValidation.createCategoryZodSchema), (0, auth_1.default)(client_1.UserRole.ADMIN), category_controller_1.CategoryController.createCategoryController);
-router.get('/', (0, auth_1.default)(client_1.UserRole.ADMIN), category_controller_1.CategoryController.getAllCategoriesController);
-router.get('/:id', (0, auth_1.default)(client_1.UserRole.ADMIN), category_controller_1.CategoryController.getSingleCategoryController);
-router.patch('/:id', (0, validateRequest_1.default)(category_validation_1.CategoryValidation.updateCategoryZodSchema), (0, auth_1.default)(client_1.UserRole.ADMIN), category_controller_1.CategoryController.updateCategoryController);
-router.delete('/:id', (0, auth_1.default)(client_1.UserRole.ADMIN), category_controller_1.CategoryController.deleteCategoryController);
+router.post('/create-category', (0, validateRequest_1.default)(category_validation_1.CategoryValidation.createCategoryZodSchema), (0, auth_1.default)(client_1.UserRole.admin), category_controller_1.CategoryController.createCategoryController);
+router.get('/', (0, auth_1.default)(client_1.UserRole.admin), category_controller_1.CategoryController.getAllCategoriesController);
+router.get('/:id', (0, auth_1.default)(client_1.UserRole.admin), category_controller_1.CategoryController.getSingleCategoryController);
+router.patch('/:id', (0, validateRequest_1.default)(category_validation_1.CategoryValidation.updateCategoryZodSchema), (0, auth_1.default)(client_1.UserRole.admin), category_controller_1.CategoryController.updateCategoryController);
+router.delete('/:id', (0, auth_1.default)(client_1.UserRole.admin), category_controller_1.CategoryController.deleteCategoryController);
 exports.CategoryRoutes = router;

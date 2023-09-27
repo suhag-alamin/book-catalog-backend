@@ -5,7 +5,7 @@ import prisma from '../../../shared/prisma';
 const getProfile = async (user: JwtPayload | null): Promise<User | null> => {
   console.log(user);
 
-  if (user?.role === UserRole.CUSTOMER) {
+  if (user?.role === UserRole.customer) {
     const result = await prisma.user.findUnique({
       where: {
         id: user?.userId,

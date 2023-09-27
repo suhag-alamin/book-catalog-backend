@@ -71,7 +71,7 @@ const createOrder = (data, user) => __awaiter(void 0, void 0, void 0, function* 
 });
 const getAllOrders = (user) => __awaiter(void 0, void 0, void 0, function* () {
     console.log(user);
-    if ((user === null || user === void 0 ? void 0 : user.role) === client_1.UserRole.CUSTOMER) {
+    if ((user === null || user === void 0 ? void 0 : user.role) === client_1.UserRole.customer) {
         const result = yield prisma_1.default.order.findMany({
             where: {
                 userId: user === null || user === void 0 ? void 0 : user.userId,
@@ -91,7 +91,7 @@ const getAllOrders = (user) => __awaiter(void 0, void 0, void 0, function* () {
 });
 const getSingleOrder = (orderId, user) => __awaiter(void 0, void 0, void 0, function* () {
     console.log(user);
-    if ((user === null || user === void 0 ? void 0 : user.role) === client_1.UserRole.CUSTOMER) {
+    if ((user === null || user === void 0 ? void 0 : user.role) === client_1.UserRole.customer) {
         const result = yield prisma_1.default.order.findUnique({
             where: {
                 id: orderId,
