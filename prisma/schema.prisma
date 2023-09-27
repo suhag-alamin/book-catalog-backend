@@ -102,8 +102,8 @@ model OrderedBook {
 }
 
 enum UserRole {
-  ADMIN
-  CUSTOMER
+  admin
+  customer
 }
 
 enum OrderStatus {

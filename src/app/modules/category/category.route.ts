@@ -10,28 +10,28 @@ const router = express.Router();
 router.post(
   '/create-category',
   validateRequest(CategoryValidation.createCategoryZodSchema),
-  auth(UserRole.ADMIN),
+  auth(UserRole.admin),
   CategoryController.createCategoryController
 );
 router.get(
   '/',
-  auth(UserRole.ADMIN),
+  auth(UserRole.admin),
   CategoryController.getAllCategoriesController
 );
 router.get(
   '/:id',
-  auth(UserRole.ADMIN),
+  auth(UserRole.admin),
   CategoryController.getSingleCategoryController
 );
 router.patch(
   '/:id',
   validateRequest(CategoryValidation.updateCategoryZodSchema),
-  auth(UserRole.ADMIN),
+  auth(UserRole.admin),
   CategoryController.updateCategoryController
 );
 router.delete(
   '/:id',
-  auth(UserRole.ADMIN),
+  auth(UserRole.admin),
   CategoryController.deleteCategoryController
 );
 

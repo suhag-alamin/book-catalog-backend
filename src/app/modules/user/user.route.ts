@@ -7,21 +7,21 @@ import { UserValidation } from './user.validation';
 
 const router = express.Router();
 
-router.get('/', auth(UserRole.ADMIN), UserController.getAllUsersController);
+router.get('/', auth(UserRole.admin), UserController.getAllUsersController);
 router.get(
   '/:id',
-  auth(UserRole.ADMIN),
+  auth(UserRole.admin),
   UserController.getSingleUserController
 );
 router.patch(
   '/:id',
   validateRequest(UserValidation.updateUserZodSchema),
-  auth(UserRole.ADMIN),
+  auth(UserRole.admin),
   UserController.updateUserController
 );
 router.delete(
   '/:id',
-  auth(UserRole.ADMIN),
+  auth(UserRole.admin),
   UserController.deleteUserController
 );
 

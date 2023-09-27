@@ -10,7 +10,7 @@ const router = express.Router();
 router.post(
   '/create-book',
   validateRequest(BookValidation.createBookZodSchema),
-  auth(UserRole.ADMIN),
+  auth(UserRole.admin),
   BookController.createBookController
 );
 
@@ -23,12 +23,12 @@ router.get('/:id', BookController.getSingleBookController);
 router.patch(
   '/:id',
   validateRequest(BookValidation.updateBookZodSchema),
-  auth(UserRole.ADMIN),
+  auth(UserRole.admin),
   BookController.updateBookController
 );
 router.delete(
   '/:id',
-  auth(UserRole.ADMIN),
+  auth(UserRole.admin),
   BookController.deleteBookController
 );
 

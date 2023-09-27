@@ -7,18 +7,18 @@ const router = express.Router();
 
 router.post(
   '/create-order',
-  auth(UserRole.CUSTOMER),
+  auth(UserRole.customer),
   OrderController.createOrderController
 );
 
 router.get(
   '/',
-  auth(UserRole.ADMIN, UserRole.CUSTOMER),
+  auth(UserRole.admin, UserRole.customer),
   OrderController.getAllOrdersController
 );
 router.get(
   '/:orderId',
-  auth(UserRole.ADMIN, UserRole.CUSTOMER),
+  auth(UserRole.admin, UserRole.customer),
   OrderController.getSingleOrderController
 );
 
