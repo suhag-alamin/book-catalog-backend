@@ -1,11 +1,10 @@
-import { Request, Response } from 'express';
-import catchAsync from '../../../shared/catchAsync';
-import { AuthService } from './auth.service';
-import sendResponse from '../../../shared/sendResponse';
 import { User } from '@prisma/client';
+import { Request, Response } from 'express';
 import httpStatus from 'http-status';
 import config from '../../../config';
-import { ILoginUserResponse } from './auth.interface';
+import catchAsync from '../../../shared/catchAsync';
+import sendResponse from '../../../shared/sendResponse';
+import { AuthService } from './auth.service';
 
 const signupController = catchAsync(async (req: Request, res: Response) => {
   const result = await AuthService.signup(req.body);
@@ -20,7 +19,7 @@ const signupController = catchAsync(async (req: Request, res: Response) => {
 
 const loginController = catchAsync(async (req: Request, res: Response) => {
   const result = await AuthService.login(req.body);
-  const { refreshToken, ...othersData } = result;
+  const { refreshToken, accessToken } = result;
 
   // set refresh token into cookie
 
@@ -31,11 +30,18 @@ const loginController = catchAsync(async (req: Request, res: Response) => {
 
   res.cookie('refreshToken', refreshToken, cookieOptions);
 
-  sendResponse<ILoginUserResponse>(res, {
-    statusCode: httpStatus.OK,
+  // sendResponse<ILoginResponse>(res, {
+  //   statusCode: httpStatus.OK,
+  //   success: true,
+  //   message: 'User logged in successfully',
+  //   // data: othersData,
+  //   token: accessToken,
+  // });
+  res.status(200).json({
     success: true,
-    message: 'User logged in successfully',
-    data: othersData,
+    statusCode: 200,
+    message: 'User signin successfully!',
+    token: accessToken,
   });
 });
 

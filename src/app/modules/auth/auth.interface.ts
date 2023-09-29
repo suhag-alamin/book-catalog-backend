@@ -7,3 +7,6 @@ export type ILoginUserResponse = {
   accessToken: string;
   refreshToken?: string;
 };
+export type ILoginResponse = {
+  token: string;
+};
