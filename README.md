@@ -20,7 +20,7 @@
 }
 ```
 
-- api/v1/login (POST)
+- api/v1/signin (POST)
 
 ```
 {
